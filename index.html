@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>地球物理課程學習報告 - DaYi Chen</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #2980b9;
+            --secondary-accent: #e74c3c;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --text-muted: #6c757d;
+            --border-color: #e9ecef;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            padding-bottom: 60px;
+        }
+
+        /* Header / Banner */
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 60px 20px 40px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto 20px;
+        }
+
+        .header-tags {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(5px);
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Layout Container */
+        .container {
+            max-width: 1000px;
+            margin: -20px auto 0;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Card Section */
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 15px rgba(0,0,0,0.08);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 8px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            color: var(--accent-color);
+        }
+
+        /* Timeline / Weekly Cards */
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .week-card {
+            background: #fdfdfd;
+            border-left: 4px solid var(--accent-color);
+            padding: 18px 20px;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+            border-top: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .week-card:hover {
+            transform: translateY(-3px);
+            border-left-color: var(--secondary-accent);
+        }
+
+        .week-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .week-badge {
+            background: var(--primary-color);
+            color: white;
+            font-weight: bold;
+            font-size: 0.8rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .week-date {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .week-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .week-task {
+            font-size: 0.9rem;
+            color: var(--text-color);
+            background: #eef6fc;
+            padding: 6px 10px;
+            border-radius: 6px;
+            display: inline-block;
+            width: 100%;
+        }
+
+        /* Feature Blocks */
+        .feature-item {
+            margin-bottom: 24px;
+        }
+
+        .feature-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .feature-item h3 {
+            font-size: 1.15rem;
+            color: var(--accent-color);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .feature-item ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        .feature-item ul li {
+            position: relative;
+            margin-bottom: 8px;
+        }
+
+        .feature-item ul li::before {
+            content: "•";
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+            position: absolute;
+            left: -15px;
+            top: -2px;
+        }
+
+        /* Interactive Accordion/Tabs for Conceptual Questions */
+        .concept-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 10px;
+        }
+
+        .concept-box summary {
+            font-weight: 600;
+            color: #1e293b;
+            cursor: pointer;
+            outline: none;
+            user-select: none;
+        }
+
+        .concept-box summary:hover {
+            color: var(--accent-color);
+        }
+
+        .concept-content {
+            margin-top: 12px;
+            font-size: 0.95rem;
+            color: #475569;
+            border-top: 1px dashed #cbd5e1;
+            padding-top: 10px;
+        }
+
+        /* Resource Links Buttons */
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+        }
+
+        .resource-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 18px;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            transition: var(--transition);
+        }
+
+        .resource-btn i {
+            font-size: 1.3rem;
+            color: var(--accent-color);
+        }
+
+        .resource-btn:hover {
+            background: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .resource-btn:hover i {
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+            .container {
+                padding: 0 15px;
+            }
+            .card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <h1>地球物理課程學習報告</h1>
+        <p>為期五週的學習歷程回顧：從環境建置、折射震測、AI 代理工具應用，到 CLIL 雙語防災探究</p>
+        <div class="header-tags">
+            <span class="tag"><i class="fa-solid fa-earth-americas"></i> 地球物理</span>
+            <span class="tag"><i class="fa-solid fa-robot"></i> AI 工具應用</span>
+            <span class="tag"><i class="fa-solid fa-language"></i> CLIL 雙語教學</span>
+            <span class="tag"><i class="fa-brands fa-github"></i> GitHub Pages</span>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- 一、課程概述 -->
+        <section class="card">
+            <h2 class="section-title"><i class="fa-solid fa-compass"></i> 一、 課程概述</h2>
+            <p>
+                本課程為期五週（7/17 - 8/14），核心主軸從環境建置與工具啟動，經折射震測與資料分析，最終發展至 CLIL（內容和語言整合學習）防災探究與英文成果發表。課程內容結合地球科學專業知識、資訊科技工具以及雙語教學設計，旨在全面實務應用地球物理探勘技術與教學發展。
+            </p>
+        </section>
+
+        <!-- 二、 五週課程進度 -->
+        <section class="card">
+            <h2 class="section-title"><i class="fa-solid fa-calendar-days"></i> 二、 五週課程進度與重點摘要</h2>
+            <div class="timeline-grid">
+                
+                <div class="week-card">
+                    <div class="week-header">
+                        <span class="week-badge">W01</span>
+                        <span class="week-date">7／17</span>
+                    </div>
+                    <div class="week-title">課程緣起、環境建置、工具介紹</div>
+                    <div class="week-task"><i class="fa-solid fa-check"></i> 作業：完成個人地震學課程工具包</div>
+                </div>
+
+                <div class="week-card">
+                    <div class="week-header">
+                        <span class="week-badge">W02</span>
+                        <span class="week-date">7／24</span>
+                    </div>
+                    <div class="week-title">折射震測原理：探測校園底下的構造</div>
+                    <div class="week-task"><i class="fa-solid fa-check"></i> 作業：完成簡易震測實作</div>
+                </div>
+
+                <div class="week-card">
+                    <div class="week-header">
+                        <span class="week-badge">W03</span>
+                        <span class="week-date">7／31</span>
+                    </div>
+                    <div class="week-title">AI 工具使用：Antigravity IDE</div>
+                    <div class="week-task"><i class="fa-solid fa-check"></i> 作業：完成震源定位教案簡報</div>
+                </div>
+
+                <div class="week-card">
+                    <div class="week-header">
+                        <span class="week-badge">W04</span>
+                        <span class="week-date">8／7</span>
+                    </div>
+                    <div class="week-title">折射震測 CLIL 教學・Antigravity 報告與網頁</div>
+                    <div class="week-task"><i class="fa-solid fa-check"></i> 作業：Antigravity 報告網頁建立</div>
+                </div>
+
+                <div class="week-card">
+                    <div class="week-header">
+                        <span class="week-badge">W05</span>
+                        <span class="week-date">8／14</span>
+                    </div>
+                    <div class="week-title">CLIL 防災探究（2）：地震波頻率與地層探測</div>
+                    <div class="week-task"><i class="fa-solid fa-check"></i> 作業：地震探測分析報告</div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 三、 核心技術與理論學習重點 -->
+        <section class="card">
+            <h2 class="section-title"><i class="fa-solid fa-microchip"></i> 三、 核心技術與理論學習重點</h2>
+            
+            <div class="feature-item">
+                <h3><i class="fa-solid fa-code"></i> 1. 網頁建置與雲端部署</h3>
+                <p>結合大語言模型（如 Gemini）輔助生成網頁程式碼 (<code>index.html</code>)，並將其部署至 GitHub Pages。透過 GitHub 免費雲端空間建立對外服務的靜態網頁，作為技術文件、程式碼及教案的展示平台。</p>
+            </div>
+
+            <div class="feature-item">
+                <h3><i class="fa-solid fa-gears"></i> 2. AI 代理與自動化工具應用</h3>
+                <ul>
+                    <li><strong>Google Antigravity IDE：</strong> 作為可直接操作電腦本機與環境檔案的 AI 代理。能自動生成內容並寫入資料夾，支援檔案編修，並提供視覺化介面供人工檢視。</li>
+                    <li><strong>Google Apps Script (GAS)：</strong> 應用於串接 Google 表單與試算表。設定自動化腳本：當學生填寫表單繳交期末報告與 Email 後，系統會自動收集資料至試算表，並同步寄發確認信件。</li>
+                </ul>
+            </div>
+
+            <div class="feature-item">
+                <h3><i class="fa-solid fa-wave-square"></i> 3. 地球物理震測實驗與原理</h3>
+                <ul>
+                    <li><strong>折射震測實務：</strong> 在不破壞地表的前提下，透過產生人工震源與佈設地震儀陣列來探測地下構造。</li>
+                    <li>
+                        <strong>震波傳播特性分析：</strong> 地震儀主要接收「直達波」與「折射波」。
+                        <details class="concept-box">
+                            <summary><i class="fa-solid fa-circle-question"></i> 思考：為什麼遠距離測點會先收到折射波？</summary>
+                            <div class="concept-content">
+                                直達波雖然路徑最短，但僅在低速的地表淺層傳遞；折射波雖然路徑較長（需向下傳播至臨界角並沿介面傳遞），但因為進入深層高聲速/高速地質構造中，傳播速度顯著提升。當距離足夠遠（超過臨界距離）時，折射波累積的速度優勢會補償多走的路徑，因而比直達波更早到達接收器。
+                            </div>
+                        </details>
+                    </li>
+                    <li><strong>建築共振反應：</strong> 探討地震波包含不同頻率成分對各種地層與建築物的影響。透過黏土與竹籤的物理模擬實驗，實證不同高度的建築物在遭遇不同頻率震波時的動態反應差異。</li>
+                </ul>
+            </div>
+
+            <div class="feature-item">
+                <h3><i class="fa-solid fa-book-open-reader"></i> 4. CLIL 雙語教案開發與提示詞工程</h3>
+                <p>善用國外開源資源（如 IRIS 平台），結合提示詞工程引導 AI 產出適合國小高年級（5~6年級）的雙語教案。設計模組包含：</p>
+                <ul>
+                    <li><strong>引起動機（Warm-up）：</strong> 透過生活化比喻帶入地震概念。</li>
+                    <li><strong>影音解析：</strong> 解構震央 (Epicenter) 與震源 (Focus/Hypocenter) 的空間概念。</li>
+                    <li><strong>雙語能量站：</strong> 萃取核心單字與句型，附帶中文翻譯及跟讀引導。</li>
+                    <li><strong>互動挑戰與課程反思：</strong> 將複雜科學知識生活化。</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 四、 參考資源清單 -->
+        <section class="card">
+            <h2 class="section-title"><i class="fa-solid fa-link"></i> 四、 參考資源清單</h2>
+            <div class="resource-grid">
+                <a href="https://oceanicdayi.github.io/Utaipei_2026_summer/" target="_blank" class="resource-btn">
+                    <i class="fa-solid fa-globe"></i>
+                    <div>
+                        <strong>課程網頁</strong><br>
+                        <small>2026 暑期地球物理課程總覽</small>
+                    </div>
+                </a>
+                <a href="https://www.iris.edu/hq/inclass/#language[]=1" target="_blank" class="resource-btn">
+                    <i class="fa-solid fa-photo-film"></i>
+                    <div>
+                        <strong>IRIS 教學資源平台</strong><br>
+                        <small>In-Class 地震學教學多媒體</small>
+                    </div>
+                </a>
+                <a href="https://github.com/oceanicdayi/Utaipei_2026_summer/blob/main/%E6%95%99%E6%A1%88_%E5%BB%BA%E7%AF%89%E5%85%B1%E6%8C%AF_%E5%9B%9B%E7%AF%80%E8%AA%B2.pdf" target="_blank" class="resource-btn">
+                    <i class="fa-solid fa-file-pdf"></i>
+                    <div>
+                        <strong>建築共振教學檔案</strong><br>
+                        <small>建築共振四節課教案 (PDF)</small>
+                    </div>
+                </a>
+                <a href="https://drive.google.com/drive/folders/1RBowon_un8n6EWAv3NdcdLRkS52jRRlk" target="_blank" class="resource-btn">
+                    <i class="fa-brands fa-google-drive"></i>
+                    <div>
+                        <strong>GAS 自動化資料夾</strong><br>
+                        <small>Google Form & Sheet 專案資源</small>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 DaYi Chen | 地球物理課程學習成果網頁 | Powered by Gemini & GitHub Pages</p>
+    </footer>
+
+</body>
+</html>
